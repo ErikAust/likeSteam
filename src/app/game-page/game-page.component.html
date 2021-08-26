@@ -1,0 +1,24 @@
+<div *ngIf="game$ | async as game; else loading">
+    <div class="game">
+        <h1>{{game.title}}</h1>
+        <div class="header">
+            <div class="inform">
+                <p>Genre: <small>{{game.genre}}</small></p>
+                <p>Developer: <small>{{game.developer}}</small></p>
+                <p>Release date: <small>{{game.date | date:'mediumDate'}}</small></p>
+                <p>Price: <small>{{game.price}}</small></p>
+            </div>
+            <div class="library" *ngIf="auth.isAuthenticated()">
+                <button type="button" (click)="add(game.id)" *ngIf="!game.added">Add to Library</button>
+                <button type="button" (click)="remove(game.id)" *ngIf="game.added">Remove from Library</button>
+            </div>
+        </div>
+        <div class="info content">
+            <quill-view-html [content]="game.text"></quill-view-html>
+            <button class="btn btn-link to-home" routerLink="/">To Home</button>
+        </div>
+    </div>
+</div>
+<ng-template #loading>
+    <p class="text-center">Loading...</p>
+</ng-template>

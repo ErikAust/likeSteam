@@ -1,0 +1,40 @@
+<div *ngIf="games.length; else loading">
+    <div class="form-control">
+        <input type="text" placeholder="Search" [(ngModel)]="searchStr" class="searching">
+    </div>
+    <div class="main-page">
+        <div id="block">
+            <div class="elem" *ngFor="let game of games | searchGames:searchStr | searchAction: searchAction
+        | searchAction: searchStrategy | searchPrice: searchFree">
+                <div class="elemt" [ngStyle]="{'background-image': 'url(' + game.img + ')'}">
+                    <button class="btn" [routerLink]="['game', game.id]">
+                        <p class="price">{{game.price}}</p>
+                    </button>
+                    <div class="btns">
+                        <button type="button" (click)="download()" *ngIf="auth.isAuthenticated()">Download</button>
+                        <button type="button" (click)="shared()">Share</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-control check">
+            <div>
+                <input type="checkbox" id="action" (change)="onChecked($event, 'action')" [(ngModel)]="searchAction">
+                <label for="action">Action</label>
+            </div>
+            <div>
+                <input type="checkbox" id="strategy" (change)="onChecked($event, 'strategy')"
+                       [(ngModel)]="searchStrategy">
+                <label for="strategy">Strategy</label>
+            </div>
+            <div>
+                <input type="checkbox" id="free" (change)="onChecked($event, 'free')" [(ngModel)]="searchFree">
+                <label for="free">FREE</label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <p class="text-center">Loading...</p>
+</ng-template>

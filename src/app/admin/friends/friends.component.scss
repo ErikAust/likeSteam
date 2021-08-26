@@ -1,0 +1,37 @@
+h3 {
+  color: black;
+}
+.friend {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  p {
+    color: black;
+  }
+  small {
+    color: #2f2f2f;
+  }
+  .btn1 {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+}
+hr {
+  margin: 10px 0;
+}
+.btn2 {
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 5px;
+  background: none;
+}
+.btn3 {
+  font-size: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 5px;
+  background: #8d8d8d;
+}

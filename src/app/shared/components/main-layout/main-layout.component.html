@@ -1,0 +1,27 @@
+<nav class="navbar main" *ngIf="!auth.isAuthenticated()">
+    <h1>likeSteam</h1>
+    <a href="#" (click)="login($event)" id="loginBTN">Log In</a>
+</nav>
+<nav class="navbar bg-primary new-nav" *ngIf="auth.isAuthenticated()">
+    <h1>
+        <a routerLink="/">Games</a>
+    </h1>
+    <ul>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/admin', 'library']">Library</a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/admin', 'friends']">Friends</a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/admin', 'profile']">Profile</a>
+        </li>
+    </ul>
+    <div id="loginBTN">
+        <a href="#" (click)="logout($event)">Log Out</a>
+    </div>
+</nav>
+<div class="container">
+    <app-alert></app-alert>
+    <router-outlet></router-outlet>
+</div>

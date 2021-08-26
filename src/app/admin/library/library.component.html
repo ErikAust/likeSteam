@@ -1,0 +1,24 @@
+<div *ngIf="games.length; else loading">
+    <div class="form-control">
+        <input type="text" placeholder="Search" [(ngModel)]="searchStr" class="searching">
+    </div>
+    <div class="main-page">
+        <div id="block">
+            <div class="elem" *ngFor="let game of games | searchGames:searchStr | searchAction: searchAction
+        | searchAction: searchStrategy | searchPrice: searchFree">
+                <div class="elemt" [ngStyle]="{'background-image': 'url(' + game.img + ')'}">
+                    <button class="btn" (click)="redirect(game.id)">
+                        <p class="price">{{game.price}}</p>
+                    </button>
+                    <div class="btns">
+                        <button type="button" (click)="remove(game.id)">Remove from Library</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loading>
+    <p class="text-center">Loading...</p>
+</ng-template>
